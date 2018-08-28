@@ -1,0 +1,75 @@
+<configuration debug="false"> 
+
+  <!-- Logging to console -->
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender"> 
+    
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <!-- Logging to console wih minimal output -->
+  <appender name="MIN-STDOUT" class="ch.qos.logback.core.ConsoleAppender"> 
+    
+    <encoder>
+      <pattern> -- %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <!-- https://logback.qos.ch/manual/appenders.html#AsyncAppender
+  http://blog.takipi.com/how-to-instantly-improve-your-java-logging-with-7-logback-tweaks/
+   -->
+  <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+    <appender-ref ref="STDOUT" />
+    <queueSize>1000</queueSize>
+  </appender>
+  
+  <!--  File appender -->
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>C:/Workspaces/eclipse-workspace/BlockchainService/logs/general.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>C:/Workspaces/eclipse-workspace/BlockchainService/logs/general.log.%d{yyyy-MM-dd}.%i.zip
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 10MB -->
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%-4relative [%d{yyyy-MM-dd HH:mm:ss.SSSZ}][%thread] &lt;%class{0}&gt; %-5level %logger{36} %method\(\) - %msg%n%ex{full}
+			</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+  <root level="INFO">
+    <!-- To use async logging use ref="ASYNC" instead -->
+	<appender-ref ref="ASYNC" />
+  </root>
+  
+  <logger name="bftsmart" level="INFO">
+
+    <appender-ref ref="MIN-STDOUT" />
+    <!--  <appender-ref ref="STDOUT" /> -->
+
+  </logger>
+  
+  <logger name="blockchain" level="DEBUG">
+	
+    <appender-ref ref="FILE" />
+    <!--  <appender-ref ref="STDOUT" /> -->
+
+  </logger>
+
+  <logger name="io.netty" level="OFF">
+
+    <appender-ref ref="MIN-STDOUT" />
+   <!--  <appender-ref ref="STDOUT" /> -->
+
+  </logger>
+
+</configuration>

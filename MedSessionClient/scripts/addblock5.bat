@@ -1,0 +1,10 @@
+java -cp dist/*;lib/*;config/* medsession.client.executable.DataGenerationClient 141 141
+java -cp dist/*;lib/*;config/* medsession.client.executable.DataGenerationClient 142 142
+java -cp dist/*;lib/*;config/* medsession.client.executable.DataGenerationClient 143 143
+java -cp dist/*;lib/*;config/* medsession.client.executable.DataGenerationClient 144 144
+java -cp dist/*;lib/*;config/* medsession.client.executable.DataGenerationClient 145 145
+java -cp dist/*;lib/*;config/* medsession.client.executable.DataGenerationClient 146 146
+java -cp dist/*;lib/*;config/* medsession.client.executable.DataGenerationClient 147 147
+java -cp dist/*;lib/*;config/* medsession.client.executable.DataGenerationClient 148 148
+java -cp dist/*;lib/*;config/* medsession.client.executable.DataGenerationClient 149 149
+java -cp dist/*;lib/*;config/* medsession.client.executable.DataGenerationClient 150 150
