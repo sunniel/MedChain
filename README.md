@@ -1,6 +1,6 @@
 # MedChain
 
-1. WANem is applied for simuatiing the latecy of a Wide Area Network. The latest version can be downloaded from: http://wanem.sourceforge.net/. To use WANem, a virtual machine, such as VirtualBox is needed to load the virtual appliance image file. For details, see the instruction on the website.
+1. WANem is applied for simuatiing the latecy of a Wide Area Network. The latest version can be downloaded from: http://wanem.sourceforge.net/. To use WANem, a virtual machine, such as VirtualBox is needed to load the virtual appliance image file. For details, see the instruction on the website. When WANem is on, the <b>Packet Limit</b> size must be configured as large as possible. Otherwise, message may get lost and consensus may fail.
 
 2. There are three JAVA-based sub-projects under the MedChain project, which are:
 	1) BlockchainService,
