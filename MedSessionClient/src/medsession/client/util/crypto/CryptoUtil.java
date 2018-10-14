@@ -1,5 +1,6 @@
 package medsession.client.util.crypto;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -161,32 +162,83 @@ public class CryptoUtil {
 		return hex;
 	}
 
+	// public static String generateFileDigestHex(String path) throws Exception {
+	// MessageDigest md = MessageDigest.getInstance("SHA256");
+	// try (InputStream is = Files.newInputStream(Paths.get(path));
+	// DigestInputStream dis = new DigestInputStream(is, md)) {
+	// /* Read decorated stream (dis) to EOF as normal... */
+	// }
+	// byte[] digest = md.digest();
+	// // to hex string
+	// String digestHex = Hex.encodeHexString(digest);
+	// return digestHex;
+	// }
+
 	public static String generateFileDigestHex(String path) throws Exception {
 		MessageDigest md = MessageDigest.getInstance("SHA256");
-		try (InputStream is = Files.newInputStream(Paths.get(path));
-				DigestInputStream dis = new DigestInputStream(is, md)) {
+		File file = new File(path);
+		int size = (int) file.length();
+		try {
+			InputStream is = Files.newInputStream(Paths.get(path));
+			DigestInputStream dis = new DigestInputStream(is, md);
 			/* Read decorated stream (dis) to EOF as normal... */
+			byte[] buffer = new byte[size];
+			while (dis.read(buffer) > -1) {
+			}
+			MessageDigest digest = dis.getMessageDigest();
+			dis.close();
+			byte[] digestByte = digest.digest();
+			// to hex string
+			String digestHex = Hex.encodeHexString(digestByte);
+			return digestHex;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
 		}
-		byte[] digest = md.digest();
-		// to hex string
-		String digestHex = Hex.encodeHexString(digest);
-		return digestHex;
 	}
+
+	// public static String generateFileDigestHex(String previousHash, String path)
+	// throws Exception {
+	// MessageDigest md = MessageDigest.getInstance("SHA256");
+	// try (InputStream is = Files.newInputStream(Paths.get(path));
+	// DigestInputStream dis = new DigestInputStream(is, md)) {
+	// /* Read decorated stream (dis) to EOF as normal... */
+	// }
+	// byte[] digest = md.digest();
+	// // to hex string
+	// String digestHex = Hex.encodeHexString(digest);
+	// String chainedHash = digestHex;
+	// if (previousHash != null) {
+	// chainedHash = hash(previousHash + digestHex);
+	// }
+	// return chainedHash;
+	// }
 
 	public static String generateFileDigestHex(String previousHash, String path) throws Exception {
 		MessageDigest md = MessageDigest.getInstance("SHA256");
-		try (InputStream is = Files.newInputStream(Paths.get(path));
-				DigestInputStream dis = new DigestInputStream(is, md)) {
+		File file = new File(path);
+		int size = (int) file.length();
+		try {
+			InputStream is = Files.newInputStream(Paths.get(path));
+			DigestInputStream dis = new DigestInputStream(is, md);
 			/* Read decorated stream (dis) to EOF as normal... */
+			byte[] buffer = new byte[size];
+			while (dis.read(buffer) > -1) {
+			}
+			MessageDigest digest = dis.getMessageDigest();
+			dis.close();
+			byte[] digestByte = digest.digest();
+			// to hex string
+			String digestHex = Hex.encodeHexString(digestByte);
+			String chainedHash = digestHex;
+			if (previousHash != null) {
+				chainedHash = hash(previousHash + digestHex);
+			}
+			return chainedHash;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
 		}
-		byte[] digest = md.digest();
-		// to hex string
-		String digestHex = Hex.encodeHexString(digest);
-		String chainedHash = digestHex;
-		if (previousHash != null) {
-			chainedHash = hash(previousHash + digestHex);
-		}
-		return chainedHash;
 	}
 
 	public static SecretKey getSecretKeyFromString(String secretKey) throws Exception {
