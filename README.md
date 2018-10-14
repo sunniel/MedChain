@@ -1,6 +1,6 @@
 # MedChain
 
-1. WANem is applied for simuatiing the latecy of a Wide Area Network. The latest version can be downloaded from: http://wanem.sourceforge.net/. To use WANem, a virtual machine, such as VirtualBox is needed to load the virtual appliance image file. For details, see the instruction on the website.
+1. WANem is applied for simuatiing the latecy of a Wide Area Network. The latest version can be downloaded from: http://wanem.sourceforge.net/. To use WANem, a virtual machine, such as VirtualBox is needed to load the virtual appliance image file. For details, see the instruction on the website. When WANem is on, the <b>Packet Limit</b> size must be configured as large as possible. Otherwise, message may get lost and consensus may fail.
 
 2. There are three JAVA-based sub-projects under the MedChain project, which are:
 	1) BlockchainService,
@@ -16,14 +16,14 @@ MedSessionClient contains the client codes for testing the MedChain functions. I
 3) The data/ folder contains the sample medical records and data chunks for testing. Specifically, the mitdb/ folder contains 50 sample ECG data chunks from www.physionet.org (https://www.physionet.org/physiobank/database/mitdb/). The VA/ foler contains 50 EHR sample record fils from BlueButton (https://www.va.gov/BLUEBUTTON/Resources.asp). The SampleECG/ folder contains more than 120000 sample ECG records from Shimmer (https://www.shimmersensing.com), which is further partitioned into 10 data chunks.
 4) The bftsmart/foler contains a code replication for invocating the blockchain service
 5) src/ contains all test and utility codes. All tests and other executable classes are located under the medsession.client.executable package:
-	a) KeyGenerator: for generating the keystores,
-	b) MedSessionThroughput for scalability test,
-	c) MedBlockMultiDataAccess for evaluating the data access efficiency with the blockchain service only,
-	d) MedSessionMultiDataAccess for evaluating the data access efficiency with the blockchain service and the directory service,
-	e) MedSessionMixedDataAccess for evaluating the data access efficiency with the blockchain service and the directory service, with both healthcare records and data stream.
-	f) UpdateThroughBlockchain for evaluating the data description update efficieny from blockchain,
-	g) UpdateThroughDirectory for evaluating the data description update efficieny from P2P storage,
-	h) BigBlockSessionManagement for evaluating the storage overhead in data sharing with the blockchain service only,
-	i) DirectoryBasedSessionManagement for evaluating the storage overhead in data sharing with both the blockchain service and the directory service,
+	* KeyGenerator: for generating the keystores,
+	* MedSessionThroughput for scalability test,
+	* MedBlockMultiDataAccess for evaluating the data access efficiency with the blockchain service only,
+	* MedSessionMultiDataAccess for evaluating the data access efficiency with the blockchain service and the directory service,
+	* MedSessionMixedDataAccess for evaluating the data access efficiency with the blockchain service and the directory service, with both healthcare records and data stream.
+	* UpdateThroughBlockchain for evaluating the data description update efficieny from blockchain,
+	* UpdateThroughDirectory for evaluating the data description update efficieny from P2P storage,
+	* BigBlockSessionManagement for evaluating the storage overhead in data sharing with the blockchain service only,
+	* DirectoryBasedSessionManagement for evaluating the storage overhead in data sharing with both the blockchain service and the directory service,
 
 If a jar file is needed to be generated (most of the time not needed), packaging everyting from the src/, bftsmart/, and config/ foler.
