@@ -9,6 +9,12 @@
 
 BlockchainService hosts the blockchain service, which can be replicated and run on different servers. If the replicas are not run on the local machine, each hosts.config under config/ folder needs to be updated with the new IP address. The executable files can be found in the runscripts/ folder, which contains two .bat files, medblockrun.bat and medsession.bat. Executing medsession.bat will start the proposed blockchain service, while medblockrun.bat will start the altertive service for performance comparison. To generate a jar file, packaging everyting from the src/ and config/ folder. Other useful information regarding the BFT server included in the project can be found at https://github.com/bft-smart. The source directory includes /src and /properties in the BlockchainService folder.
 
+In system.config, configure the following configuration parameter to "true" if client requests need to be concurrently sent to the blockchain service: 
+
+#Force all replicas to deliver to the application the same number of requests per batch.
+#This is not the same batch used during the ordering protocol
+system.samebatchsize = true
+
 DirectoryService hosts the P2P directory service, which is designed to be a Web Application, runing on Tomcat 9 (or other Web Application servers). It simulate a peer-to-peer storage service based on the Chord protocol. Data are stored in key-value pair in memory. Currently, nodes are simulated by different thread. However, they can be easily extended to be run on different physical or virutal nodes with a database or file system for data persistency. The configuration of the Chord protocol is available through the configuration file chord.properties at WebContent/config. When starting the service, it will take time to stablize the Chord network. With WAN-level delay, roughly, 10 node can be setup within 1 minutes, while 100 nodes will take around 10 minutes. For identifying the initialization state, pay attention to the console of the web server until the message "P2P network initialization completes" show up.
 
 MedSessionClient contains the client codes for testing the MedChain functions. It has several components deserved to be noticed. the source directory includes /src, /bftsmart, and /config in the MedSessionClient folder.
@@ -56,11 +62,5 @@ Simulation execution procedure for the transaction rate test:
 6. After Directory Service has started, start WANem.
 7. Start Blockchain Service.
 8. Start the simulation program.
-
-In System.config, configure the following configuration parameter to "true" if client requests need to be concurrently sent: 
-
-#Force all replicas to deliver to the application the same number of requests per batch.
-#This is not the same batch used during the ordering protocol
-system.samebatchsize = true
 
 If a jar file is needed to be generated (most of the time not needed), packaging everyting from the src/, bftsmart/, and config/ foler.
