@@ -46,5 +46,21 @@ In the transaction rate test case, the following configurations need to be chang
 4) modify chord.properties in the DirectoryService: 
 
 	ds.web.DirectoryServlet.node = 20
+	
+Simulation execution procedure for the transaction rate test: 
+1. Reset Directory Service: detach it from the server -> clear the work dir of the server
+2. Stop Blockchain Service
+3. Stop WANem.
+4. Configure Directory Service.
+5. Start Directory Service.
+6. After Directory Service has started, start WANem.
+7. Start Blockchain Service.
+8. Start the simulation program.
+
+In System.config, configure the following configuration parameter to "true" if client requests need to be concurrently sent: 
+
+#Force all replicas to deliver to the application the same number of requests per batch.
+#This is not the same batch used during the ordering protocol
+system.samebatchsize = true
 
 If a jar file is needed to be generated (most of the time not needed), packaging everyting from the src/, bftsmart/, and config/ foler.
