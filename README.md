@@ -33,13 +33,10 @@ In the transaction rate test case, the following configurations need to be chang
 1) host config in hosts.config and system.config on the blockchain server and client
 
 (system.config)
-#Number of servers in the group 
 system.servers.num = 5
 
-#Maximum number of faulty replicas 
 system.servers.f = 1  
 
-# The number of replicas in this parameter should be equal to that specified in 'system.servers.num'
 system.initial.view = 0,1,2,3,4
 
 2) remove currentView
