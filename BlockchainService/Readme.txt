@@ -4,7 +4,7 @@
 	2) Go to the <project root> folder.
 	3) Run 
 		
-		.\runscripts\smartrun.bat i
+		.\runscripts\medblockrun.bat i
 	   
 	   where i is the ID of the server to run, configured in host.config and system.config
 
@@ -23,3 +23,9 @@ in the VM argument list to correctly show logs.
 5. Data: 
 	1) blockchain is in data/blk<id>.dat files
 	2) event database is in EventDB<id> folders
+
+6. In System.config, configure the following configuration parameter to "true" if client requests need to be concurrently sent:
+
+#Force all replicas to deliver to the application the same number of requests per batch.
+#This is not the same batch used during the ordering protocol
+system.samebatchsize = true

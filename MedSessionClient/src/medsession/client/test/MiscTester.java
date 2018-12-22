@@ -250,6 +250,7 @@ public class MiscTester {
 				String file = path2 + "VA_" + i + ".txt";
 				// create file digest
 				digestHex = CryptoUtil.generateFileDigestHex(file);
+				// System.out.println("digestHex: " + digestHex);
 				// UUID did = UUID.randomUUID();
 				String summary = "This is a data summary";
 				String dataType = "Health Care Record";

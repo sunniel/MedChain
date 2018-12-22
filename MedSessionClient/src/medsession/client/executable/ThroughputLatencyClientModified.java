@@ -16,7 +16,6 @@ public class ThroughputLatencyClientModified {
 
 	public static int initId = 0;
 
-	@SuppressWarnings("static-access")
 	public static void main(String[] args) throws IOException {
 
 		initId = 0;

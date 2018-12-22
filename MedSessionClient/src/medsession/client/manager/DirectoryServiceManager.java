@@ -5,6 +5,7 @@ package medsession.client.manager;
 
 import org.json.JSONObject;
 
+import medsession.client.util.AppContext;
 import medsession.client.util.HttpCallUtil;
 
 /**
@@ -12,9 +13,14 @@ import medsession.client.util.HttpCallUtil;
  *
  */
 public class DirectoryServiceManager {
-	private static String DIRECTORY_SERVICE_URL = "http://192.168.56.1:8080/DirectoryService/directory";
+//	private static String DIRECTORY_SERVICE_URL = "http://192.168.56.1:8080/DirectoryService/directory";
+	private static String DIRECTORY_SERVICE_URL;
 	private static String OPERATION_INSERT = "insert";
 	private static String OPERATION_REMOVE = "remove";
+
+	static {
+		DIRECTORY_SERVICE_URL = AppContext.getValue("medsession.server.directory.location");
+	}
 
 	public static void displayInventories() {
 		try {

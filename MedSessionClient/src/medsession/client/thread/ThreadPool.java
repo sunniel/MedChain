@@ -26,13 +26,6 @@ public class ThreadPool {
 		this.delayToStart = time;
 	}
 
-	public int closeAndCountActive() {
-		int count = executor.getActiveCount();
-		System.out.println("number of active threads at pool closing: " + count);
-		close();
-		return count;
-	}
-
 	/**
 	 * 
 	 */
@@ -49,8 +42,8 @@ public class ThreadPool {
 			counter--;
 			// wait for another 1 second
 			try {
-				System.out.println("Sleep for another 5 second to wait for all tasks stop");
-				Thread.sleep(5000);
+				System.out.println("Sleep for 1 second to wait for all tasks stop");
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -61,6 +54,10 @@ public class ThreadPool {
 		int active = executor.getActiveCount();
 		System.out.println("active count: " + active);
 		return active == 0;
+	}
+	
+	public int active() {
+		return executor.getActiveCount();
 	}
 
 	/**
