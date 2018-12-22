@@ -32,12 +32,12 @@ In the transaction rate test case, the following configurations need to be chang
 
 1) host config in hosts.config and system.config on the blockchain server and client
 
-(system.config)
-system.servers.num = 5
+	(system.config)
+	system.servers.num = 5
 
-system.servers.f = 1  
+	system.servers.f = 1  
 
-system.initial.view = 0,1,2,3,4
+	system.initial.view = 0,1,2,3,4
 
 2) remove currentView
 
@@ -45,6 +45,6 @@ system.initial.view = 0,1,2,3,4
 
 4) modify chord.properties in the DirectoryService: 
 
-ds.web.DirectoryServlet.node = 20
+	ds.web.DirectoryServlet.node = 20
 
 If a jar file is needed to be generated (most of the time not needed), packaging everyting from the src/, bftsmart/, and config/ foler.
